@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 var faker = require('faker');
 
-var db = mongoose.connect('mongodb://localhost/players', {
+mongoose.connect('mongodb://localhost/players', {
   useNewUrlParser: true
 });
 
@@ -17,7 +17,7 @@ var playerSchema = mongoose.Schema({
 
 var Player = mongoose.model('player', playerSchema);
 
-for (var i = 0; i < 101; i++) {
+for (var i = 0; i < 100; i++) {
   var userName = faker.internet.userName();
   var avatar = faker.internet.avatar();
   var language = faker.random.arrayElement([

@@ -16,11 +16,12 @@ app.get('/players', function(req, res) {
   db.allPlayers((err, docs) => {
     if (err) {
       console.log('Error on the server');
-      res.send(404);
+      res.status(404);
       res.end();
     } else {
       console.log('Successful GET to DB from Server:', docs);
-      res.end();
+      res.status(200);
+      res.send(docs);
     }
   });
 });

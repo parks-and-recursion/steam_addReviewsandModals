@@ -7,9 +7,14 @@ const bodyParser = require('body-parser');
 app.use(bodyParser.json());
 
 const PORT = 3004;
-app.listen(PORT, function() {
-  console.log(`Listening in on port: ${PORT}`);
-});
+
+if (process.env.NODE_ENV !== 'test') {
+  app.listen(PORT, function() {
+    console.log(`Listening in on port: ${PORT}`);
+  });
+}
+
+app.use(express.static('client/dist'));
 
 app.get('/players', function(req, res) {
   console.log('Sending request to DB');
@@ -25,3 +30,6 @@ app.get('/players', function(req, res) {
     }
   });
 });
+
+
+module.exports = app

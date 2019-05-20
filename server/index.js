@@ -31,5 +31,10 @@ app.get('/players', function(req, res) {
   });
 });
 
+app.post('/players', (req, res) => {
+  console.log('POSTING THIS TO DB: ', req.body);
+  var review = req.body;
+  db.postReview(review);
+});
 
-module.exports = app
+module.exports = app;

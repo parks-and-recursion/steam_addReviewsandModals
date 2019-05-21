@@ -26,8 +26,7 @@ const OwnedFlag = styled.div`
   top: 10px;
   left: -8px;
   box-shadow: 1px 1px 2px #000000;
-  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAsAAAAKCAYAAABi8KSDAAAAGXRFW…RBVHjaYvz//z8DsYARpFhISAivjnfv3jGSp3jUGeQ4AyDAADZHNe2nyOBrAAAAAElFTkSuQmCC)
-    no-repeat 4px 4px #a3cf06;
+  background: no-repeat 4px 4px #a3cf06;
   font-size: 10px;
   color: #111111;
   height: 18px;
@@ -46,17 +45,10 @@ const Title = () => {
         IN LIBRARY&nbsp;&nbsp;
       </OwnedFlag>
       <TitleDiv className="already_in_library">
-        Dota2 is already in your Steam library
+        Dota 2 is already in your Steam library
       </TitleDiv>
     </Wrapper>
   );
 };
-
-{
-  /* <div class="game_area_already_owned page_content">
-  <div class="ds_owned_flag ds_flag">IN LIBRARY&nbsp;&nbsp;</div>
-  <div class="already_in_library">Warframe is already in your Steam library</div>
-</div> */
-}
 
 export default Title;

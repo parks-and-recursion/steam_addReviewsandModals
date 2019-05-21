@@ -13,6 +13,7 @@ const Background = styled.div`
 `;
 
 const TextEditor = styled.div`
+  position: static;
   display: block;
   font-family: Arial, Helvetica, sans - serif;
   color: #c6d4df;

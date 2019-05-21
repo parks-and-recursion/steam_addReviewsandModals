@@ -1,5 +1,6 @@
 import React from 'react';
 import Content from './Content.jsx';
+import Controls from './Controls.jsx';
 import styled from 'styled-components';
 
 const ReviewCreate = styled.div`
@@ -59,12 +60,17 @@ const Img = styled.img`
 `;
 
 const InputBox = styled.div`
-  width: calc(100% - 24px);
+  width: auto;
+  float: none;
+  overflow: hidden;
 `;
 
 class ReviewContainer extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      isOpen: false
+    };
   }
 
   render() {
@@ -84,6 +90,7 @@ class ReviewContainer extends React.Component {
         </Avatar>
         <InputBox>
           <Content />
+          <Controls />
         </InputBox>
       </ReviewCreate>
     );

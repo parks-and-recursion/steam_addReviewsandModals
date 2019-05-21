@@ -10,7 +10,7 @@
   },
   "jest": {
     "setupFiles": [
-      "<rootDir>/test/setup.js"
+      "<rootDir>test/setup.js"
     ],
     "snapshotSerializers": [
       "enzyme-to-json/serializer"
@@ -41,6 +41,7 @@
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "styled-components": "^4.2.0",
+    "styled-react-modal": "^1.2.1",
     "webpack": "^4.31.0"
   },
   "devDependencies": {

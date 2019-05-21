@@ -93,12 +93,3 @@ const AlreadyOwnedBtns = () => {
   );
 };
 export default AlreadyOwnedBtns;
-
-{
-  // <div class="game_area_already_owned_btn">
-  //   <a class="btnv6_lightblue_blue btnv6_border_2px btn_medium" href="steam://run/230410">
-  //     <span>
-  //       Play Now										</span>
-  //   </a>
-  // </div>
-}

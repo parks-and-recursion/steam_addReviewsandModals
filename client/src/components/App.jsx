@@ -2,6 +2,7 @@ import React from 'react';
 import Title from './Title.jsx';
 import AlreadyOwnedBtns from './AlreadyOwnedBtns.jsx';
 import HoursPlayed from './HoursPlayed.jsx';
+import ReviewContainer from './ReviewContainer.jsx';
 import styled from 'styled-components';
 
 const Background = styled.div`
@@ -17,7 +18,6 @@ const TextEditor = styled.div`
   color: #c6d4df;
   font-size: 12px;
   max-width: 908px;
-  width: auto;
   background: linear-gradient(
     135deg,
     rgba(97, 100, 101, 0.3) 0%,
@@ -25,6 +25,7 @@ const TextEditor = styled.div`
   );
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#4d616465', endColorstr='#4de2f4ff',GradientType=1 );
   padding: 0px 16px 16px 16px;
+  width: auto;
 `;
 
 class App extends React.Component {
@@ -39,6 +40,7 @@ class App extends React.Component {
         <Title />
         <TextEditor>
           <AlreadyOwnedBtns /> <HoursPlayed />
+          <ReviewContainer />
         </TextEditor>
       </Background>
     );

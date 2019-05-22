@@ -72,19 +72,13 @@ const AlreadyOwnedBtns = () => {
   return (
     <GameAreaPlayStats>
       <Area>
-        <Btn className="game_area_already_owned_btn">
-          <A
-            className="btnv6_lightblue_blue btnv6_border_2px btn_medium"
-            href="https://store.steampowered.com/about/"
-          >
+        <Btn className="AlreadyOwnedBtn">
+          <A className="MdBtn" href="https://store.steampowered.com/about/">
             <Span>Install Steam </Span>
           </A>
         </Btn>
-        <Btn className="game_area_already_owned_btn">
-          <A
-            className="btnv6_lightblue_blue btnv6_border_2px btn_medium"
-            href="steam://run/570"
-          >
+        <Btn className="AlreadyOwnedBtn">
+          <A className="MdBtn" href="steam://run/570">
             <Span>Play Now </Span>
           </A>
         </Btn>

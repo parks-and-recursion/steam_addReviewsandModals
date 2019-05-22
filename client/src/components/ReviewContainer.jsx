@@ -1,6 +1,7 @@
 import React from 'react';
 import Content from './Content.jsx';
 import Controls from './Controls.jsx';
+import LeftControls from './LeftControls.jsx';
 import styled from 'styled-components';
 
 const ReviewCreate = styled.div`
@@ -91,6 +92,7 @@ class ReviewContainer extends React.Component {
         <InputBox>
           <Content />
           <Controls />
+          <LeftControls />
         </InputBox>
       </ReviewCreate>
     );

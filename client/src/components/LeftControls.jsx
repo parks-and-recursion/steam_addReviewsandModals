@@ -25,6 +25,7 @@ const VoteControls = styled.div`
 `;
 
 const A = styled.a`
+  margin-right: 5px;
   border-radius: 2px;
   border: none;
   padding: 1px;
@@ -43,13 +44,12 @@ const A = styled.a`
 
 const Span = styled.span`
   padding: 0 15px;
-  font-size: 15px;
+  font-size: 12px;
   line-height: 30px;
   border-radius: 2px;
   display: block;
   background: transparent;
   &:hover {
-    text-decoration: none;
     color: #ffffff;
   }
 `;
@@ -58,11 +58,15 @@ const IconThumbsUp = styled.i`
   display: inline-block;
   width: 18px;
   height: 18px;
+  margin-right: 2px;
   margin: 0 0px;
   background: url(https://steamstore-a.akamaihd.net/public/shared/images/buttons/icons_18.png?v=3);
   vertical-align: text-top;
   background-position: 0px 0px;
   font-style: italic;
+  &:hover {
+    background-position: -72px 0px;
+  }
 `;
 
 const IconThumbsDown = styled.i`
@@ -74,6 +78,9 @@ const IconThumbsDown = styled.i`
   vertical-align: text-top;
   background-position: -18px 0px;
   font-style: italic;
+  &:hover {
+    background-position: -90px 0px;
+  }
 `;
 
 export default class LeftControls extends React.Component {

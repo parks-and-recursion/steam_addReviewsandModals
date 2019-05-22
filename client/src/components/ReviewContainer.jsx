@@ -66,6 +66,57 @@ const InputBox = styled.div`
   overflow: hidden;
 `;
 
+const Submit = styled.div`
+  display: block;
+  clear: right;
+  float: right;
+`;
+
+const Post = styled.a`
+  border-radius: 4px;
+  border: 2px solid #17202f;
+  padding: 1px;
+  display: inline-block;
+  cursor: pointer;
+  text-decoration: none !important;
+  color: #2b5066 !important;
+  float: right;
+  background: linear-gradient(
+    to bottom,
+    rgba(193, 228, 249, 1) 5%,
+    rgba(148, 183, 202, 1) 95%
+  );
+  &:hover {
+    text-decoration: none !important;
+    color: #ffffff !important;
+
+    background: rgba(102, 192, 244, 1);
+    background: -webkit - linear -
+      gradient(top, rgba(102, 192, 244, 1) 5 %, rgba(47, 137, 188, 1) 95 %);
+    background: linear -
+      gradient(
+        to bottom,
+        rgba(102, 192, 244, 1) 5 %,
+        rgba(47, 137, 188, 1) 95 %
+      );
+  }
+`;
+
+const Span = styled.span`
+  display: block;
+  background: transparent;
+  text-shadow: 1px 1px 0px rgba(255, 255, 255, 0.1);
+  padding: 0 15px;
+  line-height: 30px;
+  border-radius: 3px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 12px;
+`;
+
+const ReviewControlRight = styled.div`
+  padding-top: 14px;
+  padding-right: 7px;
+`;
 class ReviewContainer extends React.Component {
   constructor(props) {
     super(props);
@@ -87,12 +138,19 @@ class ReviewContainer extends React.Component {
           </A>
         </P>
         <Avatar>
-          <Img src="https://steamcdn-a.akamaihd.net/steamcommunity/public/images/avatars/2f/2fc03880b6f5874740b3d58dacf2113260b1cf94_full.jpg" />
+          <Img src="https://i.imgur.com/hHVjPbv.jpg" />
         </Avatar>
         <InputBox>
           <Content />
           <Controls />
           <LeftControls />
+          <ReviewControlRight>
+            <Submit>
+              <Post>
+                <Span>Post Review</Span>
+              </Post>
+            </Submit>
+          </ReviewControlRight>
         </InputBox>
       </ReviewCreate>
     );

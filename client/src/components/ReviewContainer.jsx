@@ -110,7 +110,7 @@ const Span = styled.span`
   line-height: 30px;
   border-radius: 3px;
   font-family: Arial, Helvetica, sans-serif;
-  font-size: 12px;
+  font-size: 15px;
 `;
 
 const ReviewControlRight = styled.div`

@@ -67,6 +67,9 @@ const IconThumbsUp = styled.i`
   &:hover {
     background-position: -72px 0px;
   }
+  &:active {
+    background-position: -36px 0px;
+  }
 `;
 
 const IconThumbsDown = styled.i`
@@ -81,11 +84,34 @@ const IconThumbsDown = styled.i`
   &:hover {
     background-position: -90px 0px;
   }
+  &:active {
+    background-position: -54px 0px;
+  }
 `;
 
 export default class LeftControls extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      thumbsUp: false,
+      thumbsDown: false
+    };
+    this.activeStateUp = this.activeStateUp.bind(this);
+    this.activeStateDown = this.activeStateDown.bind(this);
+  }
+
+  activeStateUp(e) {
+    e.preventDefault();
+    this.setState({
+      thumbsUp: true
+    });
+  }
+
+  activeStateDown(e) {
+    e.preventDefault();
+    this.setState({
+      thumbsDown: true
+    });
   }
 
   render() {
@@ -93,13 +119,13 @@ export default class LeftControls extends React.Component {
       <LeftReviewControls>
         <Recommended>Do you recommend this game?</Recommended>
         <VoteControls>
-          <A>
+          <A value="thumbsUp" onClick={e => this.activeStateUp(e)}>
             <Span>
               <IconThumbsUp />
               Yes
             </Span>
           </A>
-          <A>
+          <A value="thumbsDown" onClick={e => this.activeStateDown(e)}>
             <Span>
               <IconThumbsDown />
               No

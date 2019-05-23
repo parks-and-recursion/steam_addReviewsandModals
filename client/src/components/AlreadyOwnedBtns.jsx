@@ -7,32 +7,6 @@ const Area = styled.div`
   margin-right: 12px;
 `;
 
-// const Btn = styled.button`
-//   float: left;
-//   position: relative;
-//   margin-right: 12px;
-//   border-radius: 2px;
-//   border: none;
-//   padding: 1px;
-//   display: inline-block;
-//   cursor: pointer;
-//   text-decoration: none !important;
-//   color: #2b5066 !important;
-//   background: rgba(193, 228, 249, 1);
-//   background: -webkit-linear-gradient(
-//     top,
-//     rgba(193, 228, 249, 1) 5%,
-//     rgba(148, 183, 202, 1) 95%
-//   );
-//   background: linear-gradient(
-//     to bottom,
-//     rgba(193, 228, 249, 1) 5%,
-//     rgba(148, 183, 202, 1) 95%
-//   );
-//   border-radius: 4px;
-//   border: 2px solid #17202f;
-// `;
-
 const Span = styled.span`
   display: block;
   background: transparent;
@@ -41,7 +15,7 @@ const Span = styled.span`
   line-height: 30px;
   border-radius: 3px;
   font-family: Arial, Helvetica, sans-serif;
-  font-size: 12px;
+  font-size: 15px;
 `;
 
 const GameAreaPlayStats = styled.div`

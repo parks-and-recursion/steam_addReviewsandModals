@@ -108,7 +108,7 @@ const ClickedSpan = styled.span`
   color: #ffffff;
 `;
 
-const ClickThumbsUp = styled.a`
+const ClickThumbs = styled.a`
   margin-right: 5px;
   border-radius: 2px;
   border: none;
@@ -131,14 +131,16 @@ const ClickedUp = styled.i`
   font-style: italic;
 `;
 
-// BUTTON CLICKED (DOWN)
-// &:active {
-//   background-position: -54px 0px;
-// }
-// BUTTON CLICKED (UP)
-// &:active {
-//   background-position: -36px 0px;
-// }
+const ClickedDown = styled.i`
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+  margin: 0 0px;
+  background: url(https://steamstore-a.akamaihd.net/public/shared/images/buttons/icons_18.png?v=3);
+  vertical-align: text-top;
+  background-position: -54px 0px;
+  font-style: italic;
+`;
 
 export default class LeftControls extends React.Component {
   constructor(props) {
@@ -154,6 +156,7 @@ export default class LeftControls extends React.Component {
     this.handleHoverUp = this.handleHoverUp.bind(this);
     this.handleHoverDown = this.handleHoverDown.bind(this);
     this.handleClickUp = this.handleClickUp.bind(this);
+    this.handleClickDown = this.handleClickDown.bind(this);
   }
 
   activeStateUp(e) {
@@ -203,7 +206,8 @@ export default class LeftControls extends React.Component {
     });
   }
 
-  handleClickDown() {
+  handleClickDown(e) {
+    e.preventDefault();
     this.setState({
       clickUp: false,
       clickDown: true,
@@ -237,7 +241,7 @@ export default class LeftControls extends React.Component {
           </VoteControls>
         </LeftReviewControls>
       );
-    } else if (this.state.hoverUp === true) {
+    } else if (this.state.hoverUp === true && this.state.clickDown === false) {
       return (
         <LeftReviewControls>
           <Recommended>Do you recommend this game?</Recommended>
@@ -275,6 +279,7 @@ export default class LeftControls extends React.Component {
             <A
               value="thumbsDown"
               onMouseLeave={() => this.handleHoverLeaveDown()}
+              onClick={e => this.handleClickDown(e)}
             >
               <Span>
                 <HoverThumbsDown />
@@ -284,17 +289,21 @@ export default class LeftControls extends React.Component {
           </VoteControls>
         </LeftReviewControls>
       );
-    } else if (this.state.clickUp === true && this.state.hoverDown === false) {
+    } else if (
+      this.state.clickUp === true &&
+      this.state.hoverDown === false &&
+      this.state.clickDown === false
+    ) {
       return (
         <LeftReviewControls>
           <Recommended>Do you recommend this game?</Recommended>
           <VoteControls>
-            <ClickThumbsUp value="thumbsUp">
+            <ClickThumbs value="thumbsUp">
               <ClickedSpan>
                 <ClickedUp />
                 Yes
               </ClickedSpan>
-            </ClickThumbsUp>
+            </ClickThumbs>
             <A value="thumbsDown" onMouseEnter={() => this.handleHoverDown()}>
               <Span>
                 <IconThumbsDown />
@@ -304,26 +313,103 @@ export default class LeftControls extends React.Component {
           </VoteControls>
         </LeftReviewControls>
       );
-    } else if (this.state.clickUp === true && this.state.hoverDown === true) {
+    } else if (
+      this.state.clickUp === true &&
+      this.state.hoverDown === true &&
+      this.state.clickDown === false
+    ) {
       return (
         <LeftReviewControls>
           <Recommended>Do you recommend this game?</Recommended>
           <VoteControls>
-            <ClickThumbsUp value="thumbsUp">
+            <ClickThumbs value="thumbsUp">
               <ClickedSpan>
                 <ClickedUp />
                 Yes
               </ClickedSpan>
-            </ClickThumbsUp>
+            </ClickThumbs>
             <A
               value="thumbsDown"
               onMouseLeave={() => this.handleHoverLeaveDown()}
+              onClick={e => this.handleClickDown(e)}
             >
               <Span>
                 <HoverThumbsDown />
                 No
               </Span>
             </A>
+          </VoteControls>
+        </LeftReviewControls>
+      );
+    } else if (this.state.clickDown === true && this.state.hoverUp === true) {
+      return (
+        <LeftReviewControls>
+          <Recommended>Do you recommend this game?</Recommended>
+          <VoteControls>
+            <A
+              value="thumbsUp"
+              onMouseLeave={() => this.handleHoverLeaveUp()}
+              onClick={e => this.handleClickUp(e)}
+            >
+              <Span>
+                <HoverThumbsUp />
+                Yes
+              </Span>
+            </A>
+            <ClickThumbs value="thumbsDown">
+              <ClickedSpan>
+                <ClickedDown />
+                No
+              </ClickedSpan>
+            </ClickThumbs>
+          </VoteControls>
+        </LeftReviewControls>
+      );
+    } else if (this.state.clickDown === true && this.state.hoverUp === false) {
+      return (
+        <LeftReviewControls>
+          <Recommended>Do you recommend this game?</Recommended>
+          <VoteControls>
+            <A value="thumbsUp" onMouseEnter={() => this.handleHoverUp()}>
+              <Span>
+                <IconThumbsUp />
+                Yes
+              </Span>
+            </A>
+            <ClickThumbs value="thumbsDown">
+              <ClickedSpan>
+                <ClickedDown />
+                No
+              </ClickedSpan>
+            </ClickThumbs>
+          </VoteControls>
+        </LeftReviewControls>
+      );
+    } else if (
+      this.state.clickDown === true &&
+      this.state.hoverUp === true &&
+      this.state.clickUp === false
+    ) {
+      return (
+        <LeftReviewControls>
+          <Recommended>Do you recommend this game?</Recommended>
+          <VoteControls>
+            <A
+              value="thumbsUp"
+              onMouseLeave={() => this.handleHoverLeaveUp()}
+              onClick={e => this.handleClickUp(e)}
+            >
+              <Span>
+                <HoverThumbsUp />
+                Yes
+              </Span>
+            </A>
+            <ClickThumbs value="thumbsDown">
+              <ClickedSpan>
+                <ClickedDown />
+                No
+              </ClickedSpan>
+            </ClickThumbs>
           </VoteControls>
         </LeftReviewControls>
       );

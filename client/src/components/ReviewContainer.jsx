@@ -73,6 +73,7 @@ const Submit = styled.div`
 `;
 
 const Post = styled.a`
+  margin-left: 2px;
   border-radius: 4px;
   border: 2px solid #17202f;
   padding: 1px;
@@ -89,16 +90,11 @@ const Post = styled.a`
   &:hover {
     text-decoration: none !important;
     color: #ffffff !important;
-
-    background: rgba(102, 192, 244, 1);
-    background: -webkit - linear -
-      gradient(top, rgba(102, 192, 244, 1) 5 %, rgba(47, 137, 188, 1) 95 %);
-    background: linear -
-      gradient(
-        to bottom,
-        rgba(102, 192, 244, 1) 5 %,
-        rgba(47, 137, 188, 1) 95 %
-      );
+    background: linear-gradient(
+      to bottom,
+      rgba(102, 192, 244, 1) 5%,
+      rgba(47, 137, 188, 1) 95%
+    );
   }
 `;
 
@@ -131,8 +127,8 @@ class ReviewContainer extends React.Component {
         <H1>Write a review for Dota 2</H1>
         <P id="review_describe">
           Please describe what you liked or disliked about this game and whether
-          you recommend it to others. Please remember to be polite and follow
-          the &nbsp;
+          you recommend it to others. <br />
+          Please remember to be polite and follow the &nbsp;
           <A href="https://support.steampowered.com/kb_article.php?ref=4045-USHJ-3810">
             Rules and Guidelines
           </A>

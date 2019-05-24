@@ -35,10 +35,9 @@ const A = styled.a`
   color: #67c1f5 !important;
   background: rgba(103, 193, 245, 0.2);
   &:hover {
-    	color: #ffffff;
-	border-radius: 1px;
-  background: -webkit-linear-gradient( -60deg, #67c1f5 5%,#417a9b 95%););
-  background: linear-gradient( -60deg, #67c1f5 5%,#417a9b 95%););}
+    text-decoration: none !important;
+    color: #fff !important;
+    background: linear-gradient(-60deg, #417a9b 5%, #67c1f5 95%);
   }
 `;
 
@@ -64,12 +63,6 @@ const IconThumbsUp = styled.i`
   vertical-align: text-top;
   background-position: 0px 0px;
   font-style: italic;
-  &:hover {
-    background-position: -72px 0px;
-  }
-  &:active {
-    background-position: -36px 0px;
-  }
 `;
 
 const IconThumbsDown = styled.i`
@@ -81,58 +74,259 @@ const IconThumbsDown = styled.i`
   vertical-align: text-top;
   background-position: -18px 0px;
   font-style: italic;
-  &:hover {
-    background-position: -90px 0px;
-  }
-  &:active {
-    background-position: -54px 0px;
-  }
 `;
+
+const HoverThumbsUp = styled.i`
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+  margin: 0 0px;
+  background: url(https://steamstore-a.akamaihd.net/public/shared/images/buttons/icons_18.png?v=3);
+  vertical-align: text-top;
+  background-position: -72px 0px;
+  font-style: italic;
+`;
+
+const HoverThumbsDown = styled.i`
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+  margin: 0 0px;
+  background: url(https://steamstore-a.akamaihd.net/public/shared/images/buttons/icons_18.png?v=3);
+  vertical-align: text-top;
+  background-position: -90px 0px;
+  font-style: italic;
+`;
+
+const ClickedSpan = styled.span`
+  padding: 0 15px;
+  font-size: 12px;
+  line-height: 30px;
+  border-radius: 2px;
+  display: block;
+  background: transparent;
+  color: #ffffff;
+`;
+
+const ClickThumbsUp = styled.a`
+  margin-right: 5px;
+  border-radius: 2px;
+  border: none;
+  padding: 1px;
+  display: inline-block;
+  cursor: pointer;
+  text-decoration: none !important;
+  color: #fff !important;
+  background: rgba(103, 193, 245, 0.6);
+`;
+
+const ClickedUp = styled.i`
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+  margin: 0 0px;
+  background: url(https://steamstore-a.akamaihd.net/public/shared/images/buttons/icons_18.png?v=3);
+  vertical-align: text-top;
+  background-position: -36px 0px;
+  font-style: italic;
+`;
+
+// BUTTON CLICKED (DOWN)
+// &:active {
+//   background-position: -54px 0px;
+// }
+// BUTTON CLICKED (UP)
+// &:active {
+//   background-position: -36px 0px;
+// }
 
 export default class LeftControls extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      thumbsUp: false,
-      thumbsDown: false
+      clickUp: false,
+      hoverUp: false,
+      clickDown: false,
+      hoverDown: false
     };
     this.activeStateUp = this.activeStateUp.bind(this);
     this.activeStateDown = this.activeStateDown.bind(this);
+    this.handleHoverUp = this.handleHoverUp.bind(this);
+    this.handleHoverDown = this.handleHoverDown.bind(this);
+    this.handleClickUp = this.handleClickUp.bind(this);
   }
 
   activeStateUp(e) {
     e.preventDefault();
     this.setState({
-      thumbsUp: true
+      clickUp: true
     });
   }
 
   activeStateDown(e) {
     e.preventDefault();
     this.setState({
-      thumbsDown: true
+      clickDown: true
+    });
+  }
+
+  handleHoverUp() {
+    this.setState({
+      hoverUp: true
+    });
+  }
+
+  handleHoverLeaveUp() {
+    this.setState({
+      hoverUp: false
+    });
+  }
+
+  handleHoverDown() {
+    this.setState({
+      hoverDown: true
+    });
+  }
+
+  handleHoverLeaveDown() {
+    this.setState({
+      hoverDown: false
+    });
+  }
+
+  handleClickUp(e) {
+    e.preventDefault();
+    this.setState({
+      clickUp: true,
+      clickDown: false,
+      hoverUp: false
+    });
+  }
+
+  handleClickDown() {
+    this.setState({
+      clickUp: false,
+      clickDown: true,
+      hoverDown: false
     });
   }
 
   render() {
-    return (
-      <LeftReviewControls>
-        <Recommended>Do you recommend this game?</Recommended>
-        <VoteControls>
-          <A value="thumbsUp" onClick={e => this.activeStateUp(e)}>
-            <Span>
-              <IconThumbsUp />
-              Yes
-            </Span>
-          </A>
-          <A value="thumbsDown" onClick={e => this.activeStateDown(e)}>
-            <Span>
-              <IconThumbsDown />
-              No
-            </Span>
-          </A>
-        </VoteControls>
-      </LeftReviewControls>
-    );
+    if (
+      this.state.hoverUp === false &&
+      this.state.hoverDown === false &&
+      this.state.clickUp === false &&
+      this.state.clickDown === false
+    ) {
+      return (
+        <LeftReviewControls>
+          <Recommended>Do you recommend this game?</Recommended>
+          <VoteControls>
+            <A value="thumbsUp" onMouseEnter={() => this.handleHoverUp()}>
+              <Span>
+                <IconThumbsUp />
+                Yes
+              </Span>
+            </A>
+            <A value="thumbsDown" onMouseEnter={() => this.handleHoverDown()}>
+              <Span>
+                <IconThumbsDown />
+                No
+              </Span>
+            </A>
+          </VoteControls>
+        </LeftReviewControls>
+      );
+    } else if (this.state.hoverUp === true) {
+      return (
+        <LeftReviewControls>
+          <Recommended>Do you recommend this game?</Recommended>
+          <VoteControls>
+            <A
+              value="thumbsUp"
+              onMouseLeave={() => this.handleHoverLeaveUp()}
+              onClick={e => this.handleClickUp(e)}
+            >
+              <Span>
+                <HoverThumbsUp />
+                Yes
+              </Span>
+            </A>
+            <A value="thumbsDown">
+              <Span>
+                <IconThumbsDown />
+                No
+              </Span>
+            </A>
+          </VoteControls>
+        </LeftReviewControls>
+      );
+    } else if (this.state.hoverDown === true && this.state.clickUp === false) {
+      return (
+        <LeftReviewControls>
+          <Recommended>Do you recommend this game?</Recommended>
+          <VoteControls>
+            <A value="thumbsUp" onMouseEnter={() => this.handleHoverUp()}>
+              <Span>
+                <IconThumbsUp />
+                Yes
+              </Span>
+            </A>
+            <A
+              value="thumbsDown"
+              onMouseLeave={() => this.handleHoverLeaveDown()}
+            >
+              <Span>
+                <HoverThumbsDown />
+                No
+              </Span>
+            </A>
+          </VoteControls>
+        </LeftReviewControls>
+      );
+    } else if (this.state.clickUp === true && this.state.hoverDown === false) {
+      return (
+        <LeftReviewControls>
+          <Recommended>Do you recommend this game?</Recommended>
+          <VoteControls>
+            <ClickThumbsUp value="thumbsUp">
+              <ClickedSpan>
+                <ClickedUp />
+                Yes
+              </ClickedSpan>
+            </ClickThumbsUp>
+            <A value="thumbsDown" onMouseEnter={() => this.handleHoverDown()}>
+              <Span>
+                <IconThumbsDown />
+                No
+              </Span>
+            </A>
+          </VoteControls>
+        </LeftReviewControls>
+      );
+    } else if (this.state.clickUp === true && this.state.hoverDown === true) {
+      return (
+        <LeftReviewControls>
+          <Recommended>Do you recommend this game?</Recommended>
+          <VoteControls>
+            <ClickThumbsUp value="thumbsUp">
+              <ClickedSpan>
+                <ClickedUp />
+                Yes
+              </ClickedSpan>
+            </ClickThumbsUp>
+            <A
+              value="thumbsDown"
+              onMouseLeave={() => this.handleHoverLeaveDown()}
+            >
+              <Span>
+                <HoverThumbsDown />
+                No
+              </Span>
+            </A>
+          </VoteControls>
+        </LeftReviewControls>
+      );
+    }
   }
 }

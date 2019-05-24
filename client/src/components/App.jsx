@@ -10,6 +10,7 @@ const Background = styled.div`
   color: #acb2b8;
   width: auto;
   margin: 0 2%;
+  max-width: 940px;
 `;
 
 const TextEditor = styled.div`

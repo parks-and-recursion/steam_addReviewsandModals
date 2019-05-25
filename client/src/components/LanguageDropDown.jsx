@@ -27,7 +27,7 @@ const DropDownList = styled.ul`
   margin-block-end: 1em;
   margin-inline-start: 0px;
   margin-inline-end: 0px;
-  padding-inline-start: 40px;
+  padding-left: 5px;
 `;
 
 const DropDownListItem = styled.li`
@@ -41,6 +41,9 @@ const DropDownListA = styled.a`
   text-decoration: none;
   color: #e5e4dc;
   white-space: nowrap;
+  &:hover {
+    background: linear-gradient( -60deg, #417a9b 5%,#67c1f5 95%);
+  }
 `;
 
 export default class LanguageDropDown extends React.Component {
@@ -56,22 +59,9 @@ export default class LanguageDropDown extends React.Component {
       <SelectContainer>
         <DropDownList>
           <DropDownListItem>
-            <DropDownListA>Chinese</DropDownListA>
-          </DropDownListItem>
-          <DropDownListItem>
-            <DropDownListA>English</DropDownListA>
-          </DropDownListItem>
-          <DropDownListItem>
-            <DropDownListA>Russian</DropDownListA>
-          </DropDownListItem>
-          <DropDownListItem>
-            <DropDownListA>No</DropDownListA>
-          </DropDownListItem>
-          <DropDownListItem>
-            <DropDownListA>Curly Fries</DropDownListA>
-          </DropDownListItem>
-          <DropDownListItem>
-            <DropDownListA>Hamburger</DropDownListA>
+            {
+              this.props.languages.map(language => (<DropDownListA onClick={() => this.props.updateLanguage(language)}>{language}</DropDownListA>))
+            }
           </DropDownListItem>
         </DropDownList>
       </SelectContainer>

@@ -92,12 +92,15 @@ export default class Controls extends React.Component {
     this.state = {
       visibility: ['Public', 'Friends Only'],
       language: 'English',
+      languages: ['English', 'Chinese', 'Russian', 'Hamburger'],
       allowComments: true,
       showMenuPublic: false,
       showMenuLanguage: false
     };
     this.handleVisibilityDrop = this.handleVisibilityDrop.bind(this);
     this.handleLanguageDrop = this.handleLanguageDrop.bind(this);
+    this.onBlur = this.onBlur.bind(this);
+    this.updateLanguage = this.updateLanguage.bind(this);
   }
 
   handleVisibilityDrop(e) {
@@ -109,67 +112,48 @@ export default class Controls extends React.Component {
 
   handleLanguageDrop(e) {
     e.preventDefault();
-    this.setState({
-      showMenuLanguage: true
-    });
+    const showMenuLanguage = !this.state.showMenuLanguage;
+    this.setState({ showMenuLanguage });
+  }
+
+  onBlur(event) {
+    console.log('blur');
+    if (!event.currentTarget.contains(event.relatedTarget)) {
+      const showMenuLanguage = false;
+      this.setState({showMenuLanguage});
+    }
+  }
+
+  updateLanguage(language) {
+    this.setState({language});
   }
 
   render() {
-    if (
-      this.state.showMenuPublic === false &&
-      this.state.showMenuLanguage === false
-    ) {
-      return (
-        <ReviewControls>
-          <ControlBlock>
-            <StyledSpan className="controlText"> Visibility :</StyledSpan>{' '}
-            &nbsp;
-            <DropDownContainer onClick={e => this.handleVisibilityDrop(e)}>
-              <DropDownA>Public</DropDownA>
-            </DropDownContainer>
-          </ControlBlock>
-          <ControlBlock>
-            <StyledSpan className="controlText"> Language :</StyledSpan> &nbsp;
-            <DropDownContainer onClick={e => this.handleLanguageDrop(e)}>
-              <DropDownA>English</DropDownA>
-            </DropDownContainer>
-          </ControlBlock>
-          <AllowComments>
-            <input type="checkbox" id="EnableReviewComments" />
-            <label id="EnableReviewComments">Allow Comments</label>
-          </AllowComments>
-          <FormattingHelp>Formatting Help</FormattingHelp>
-        </ReviewControls>
-      );
-    } else if (
-      this.state.showMenuPublic === false &&
-      this.state.showMenuLanguage === true
-    ) {
-      return (
-        <ReviewControls>
-          <ControlBlock>
-            <StyledSpan className="controlText"> Visibility :</StyledSpan>{' '}
-            &nbsp;
-            <DropDownContainer>
-              <DropDownA>Public</DropDownA>
-            </DropDownContainer>
-          </ControlBlock>
-          <ControlBlock>
-            <StyledSpan className="controlText"> Language :</StyledSpan> &nbsp;
-            <DropDownContainer>
-              <DropDownA>English</DropDownA>
-            </DropDownContainer>
-            <SelectContainer>
-              <LanguageDropDown />
-            </SelectContainer>
-          </ControlBlock>
-          <AllowComments>
-            <input type="checkbox" id="EnableReviewComments" />
-            <label id="EnableReviewComments">Allow Comments</label>
-          </AllowComments>
-          <FormattingHelp>Formatting Help</FormattingHelp>
-        </ReviewControls>
-      );
-    }
+  
+    return (
+      <ReviewControls>
+        <ControlBlock>
+          <StyledSpan className="controlText"> Visibility :</StyledSpan>{' '}
+          &nbsp;
+          <DropDownContainer onClick={e => this.handleVisibilityDrop(e)}>
+            <DropDownA>Public</DropDownA>
+          </DropDownContainer>
+        </ControlBlock>
+        <ControlBlock>
+          <StyledSpan className="controlText"> Language :</StyledSpan> &nbsp;
+          <DropDownContainer onClick={e => this.handleLanguageDrop(e)} onBlur={e => console.log(e)}>
+            <DropDownA>{this.state.language}</DropDownA>
+            {
+              this.state.showMenuLanguage ? <LanguageDropDown updateLanguage={this.updateLanguage} languages={this.state.languages}/> : null
+            }
+          </DropDownContainer>
+        </ControlBlock>
+        <AllowComments>
+          <input type="checkbox" id="EnableReviewComments" />
+          <label id="EnableReviewComments">Allow Comments</label>
+        </AllowComments>
+        <FormattingHelp>Formatting Help</FormattingHelp>
+      </ReviewControls>
+    );
   }
 }

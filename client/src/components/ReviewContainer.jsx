@@ -117,8 +117,34 @@ class ReviewContainer extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      isOpen: false
+      language: '',
+      visibility: '',
+      allowComments: false
     };
+    this.handleLanguageChange = this.handleLanguageChange.bind(this);
+    this.handleVisibilityChange = this.handleVisibilityChange.bind(this);
+    this.handleAllowComments = this.handleAllowComments.bind(this);
+  }
+
+  handleLanguageChange(language) {
+    this.setState({
+      language
+    });
+    console.log(`ReviewContainer has language ${language}`);
+  }
+
+  handleVisibilityChange(visibility) {
+    this.setState({
+      visibility
+    });
+    console.log(`ReviewContainer has visibility ${visibility}`);
+  }
+
+  handleAllowComments() {
+    this.setState({
+      allowComments: true
+    });
+    console.log('ReviewContainer has allowing Comments');
   }
 
   render() {
@@ -138,7 +164,11 @@ class ReviewContainer extends React.Component {
         </Avatar>
         <InputBox>
           <Content />
-          <Controls />
+          <Controls
+            handleLanguageChange={this.handleLanguageChange}
+            handleVisibilityChange={this.handleVisibilityChange}
+            handleAllowComments={this.handleAllowComments}
+          />
           <LeftControls />
           <ReviewControlRight>
             <Submit>

@@ -50,7 +50,6 @@ const DropDownContainer = styled.div`
   margin-top: -3px;
   background: rgba(103, 193, 245, 0.1);
   border-radius: 3px;
-
   &:hover {
     color: #ffffff;
     border-radius: 3px;
@@ -156,17 +155,19 @@ export default class Controls extends React.Component {
 
   updateLanguage(language) {
     this.setState({ language });
+    this.props.handleLanguageChange(language);
   }
 
   updateVisibility(visibility) {
-    console.log('Visiblity updated');
     this.setState({ visibility });
+    this.props.handleVisibilityChange(visibility);
   }
 
   handleAllowComments() {
     this.setState({
       allowComments: true
     });
+    this.props.handleAllowComments();
   }
 
   render() {

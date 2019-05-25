@@ -18,11 +18,7 @@ const DropDownList = styled.ul`
   overflow-x: hidden;
   box-shadow: 0 0 5px 0 #000000;
   background: #417a9b;
-  margin-block-start: 1em;
-  margin-block-end: 1em;
-  margin-inline-start: 0px;
-  margin-inline-end: 0px;
-  padding-left: 7px;
+  padding: 0;
 `;
 
 const DropDownListItem = styled.li`

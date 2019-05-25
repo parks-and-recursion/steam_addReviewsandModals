@@ -43,11 +43,11 @@ const DropDownListA = styled.a`
   }
 `;
 
-export default class LanguageDropDown extends React.Component {
+export default class VisibilityDropDown extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      Language: ''
+      visibility: ''
     };
   }
 
@@ -55,13 +55,13 @@ export default class LanguageDropDown extends React.Component {
     return (
       <SelectContainer>
         <DropDownList>
-          {this.props.languages.map((language, key) => (
+          {this.props.visibilityOptions.map((visibility, key) => (
             <DropDownListItem key={key}>
               <DropDownListA
-                onClick={() => this.props.updateLanguage(language)}
+                onClick={() => this.props.updateVisibility(visibility)}
                 key={key}
               >
-                {language}
+                {visibility}
               </DropDownListA>
             </DropDownListItem>
           ))}

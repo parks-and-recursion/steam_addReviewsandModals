@@ -1,11 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import LanguageDropDown from './LanguageDropDown.jsx';
-
-const SelectContainer = styled.div`
-  position: static;
-  display: block;
-`;
+import VisibilityDropDown from './VisibilityDropDown.jsx';
 
 const StyledSpan = styled.span`
   font-family: Arial, Helvetica, sans-serif;
@@ -46,6 +42,7 @@ const AllowComments = styled.div`
   display: inline-block;
   margin-right: 30px;
 `;
+
 const DropDownContainer = styled.div`
   display: inline-block;
   position: relative;
@@ -53,6 +50,7 @@ const DropDownContainer = styled.div`
   margin-top: -3px;
   background: rgba(103, 193, 245, 0.1);
   border-radius: 3px;
+
   &:hover {
     color: #ffffff;
     border-radius: 3px;
@@ -90,86 +88,123 @@ export default class Controls extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      visibility: ['Public', 'Friends Only'],
+      visibilityOptions: ['Public', 'Friends Only'],
+      visibility: 'Public',
       language: 'English',
-      allowComments: true,
+      languages: [
+        'English',
+        'Simplified Chinese',
+        'Traditional Chinese',
+        'Japanese',
+        'Korean',
+        'Thai',
+        'Bulgarian',
+        'Czech',
+        'Danish',
+        'German',
+        'English',
+        'Spanish - Spain',
+        'Spanish - Latin America',
+        'Greek',
+        'French',
+        'Italian',
+        'Hungarian',
+        'Dutch',
+        'Norwegian',
+        'Polish',
+        'Portuguese',
+        'Protuguese - Brazil',
+        'Romanian',
+        'Russian',
+        'Finnish',
+        'Swedish',
+        'Turkish',
+        'Vietnamese',
+        'Ukranian'
+      ],
+      allowComments: false,
       showMenuPublic: false,
       showMenuLanguage: false
     };
     this.handleVisibilityDrop = this.handleVisibilityDrop.bind(this);
     this.handleLanguageDrop = this.handleLanguageDrop.bind(this);
+    this.onBlur = this.onBlur.bind(this);
+    this.updateLanguage = this.updateLanguage.bind(this);
+    this.handleAllowComments = this.handleAllowComments.bind(this);
+    this.updateVisibility = this.updateVisibility.bind(this);
   }
 
   handleVisibilityDrop(e) {
     e.preventDefault();
-    this.setState({
-      showMenuPublic: true
-    });
+    const showMenuPublic = !this.state.showMenuPublic;
+    this.setState({ showMenuPublic });
   }
 
   handleLanguageDrop(e) {
     e.preventDefault();
+    const showMenuLanguage = !this.state.showMenuLanguage;
+    this.setState({ showMenuLanguage });
+  }
+
+  onBlur(event) {
+    console.log('blur');
+    if (!event.currentTarget.contains(event.relatedTarget)) {
+      const showMenuLanguage = false;
+      this.setState({ showMenuLanguage });
+    }
+  }
+
+  updateLanguage(language) {
+    this.setState({ language });
+  }
+
+  updateVisibility(visibility) {
+    console.log('Visiblity updated');
+    this.setState({ visibility });
+  }
+
+  handleAllowComments() {
     this.setState({
-      showMenuLanguage: true
+      allowComments: true
     });
   }
 
   render() {
-    if (
-      this.state.showMenuPublic === false &&
-      this.state.showMenuLanguage === false
-    ) {
-      return (
-        <ReviewControls>
-          <ControlBlock>
-            <StyledSpan className="controlText"> Visibility :</StyledSpan>{' '}
-            &nbsp;
-            <DropDownContainer onClick={e => this.handleVisibilityDrop(e)}>
-              <DropDownA>Public</DropDownA>
-            </DropDownContainer>
-          </ControlBlock>
-          <ControlBlock>
-            <StyledSpan className="controlText"> Language :</StyledSpan> &nbsp;
-            <DropDownContainer onClick={e => this.handleLanguageDrop(e)}>
-              <DropDownA>English</DropDownA>
-            </DropDownContainer>
-          </ControlBlock>
-          <AllowComments>
-            <input type="checkbox" id="EnableReviewComments" />
-            <label id="EnableReviewComments">Allow Comments</label>
-          </AllowComments>
-          <FormattingHelp>Formatting Help</FormattingHelp>
-        </ReviewControls>
-      );
-    } else if (
-      this.state.showMenuPublic === false &&
-      this.state.showMenuLanguage === true
-    ) {
-      return (
-        <ReviewControls>
-          <ControlBlock>
-            <StyledSpan className="controlText"> Visibility :</StyledSpan>{' '}
-            &nbsp;
-            <DropDownContainer>
-              <DropDownA>Public</DropDownA>
-            </DropDownContainer>
-          </ControlBlock>
-          <ControlBlock>
-            <StyledSpan className="controlText"> Language :</StyledSpan> &nbsp;
-            <DropDownContainer>
-              <DropDownA>English</DropDownA>
-            </DropDownContainer>
-            <SelectContainer>
-              <LanguageDropDown />
-            </SelectContainer>
-          </ControlBlock>
-          <AllowComments>
-            <input type="checkbox" id="EnableReviewComments" />
-            <label id="EnableReviewComments">Allow Comments</label>
-          </AllowComments>
-          <FormattingHelp>Formatting Help</FormattingHelp>
-        </ReviewControls>
-      );
-    }
+    return (
+      <ReviewControls>
+        <ControlBlock>
+          <StyledSpan className="controlText"> Visibility :</StyledSpan> &nbsp;
+          <DropDownContainer onClick={e => this.handleVisibilityDrop(e)}>
+            <DropDownA>{this.state.visibility}</DropDownA>
+            {this.state.showMenuPublic ? (
+              <VisibilityDropDown
+                visibilityOptions={this.state.visibilityOptions}
+                updateVisibility={this.updateVisibility}
+              />
+            ) : null}
+          </DropDownContainer>
+        </ControlBlock>
+        <ControlBlock>
+          <StyledSpan className="controlText"> Language :</StyledSpan> &nbsp;
+          <DropDownContainer
+            onClick={e => this.handleLanguageDrop(e)}
+            onBlur={e => console.log(e)}
+          >
+            <DropDownA>{this.state.language}</DropDownA>
+            {this.state.showMenuLanguage ? (
+              <LanguageDropDown
+                updateLanguage={this.updateLanguage}
+                languages={this.state.languages}
+              />
+            ) : null}
+          </DropDownContainer>
+        </ControlBlock>
+        <AllowComments>
+          <input type="checkbox" onChange={this.handleAllowComments} />
+          <label>Allow Comments</label>
+        </AllowComments>
+        <FormattingHelp>Formatting Help</FormattingHelp>
+      </ReviewControls>
+    );
   }
 }

@@ -1,5 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
+import LanguageDropDown from './LanguageDropDown.jsx';
+
+const SelectContainer = styled.div`
+  position: static;
+  display: block;
+`;
 
 const StyledSpan = styled.span`
   font-family: Arial, Helvetica, sans-serif;
@@ -32,6 +38,7 @@ const FormattingHelp = styled.div`
   &:hover {
     text-decoration: none;
     color: #66c0f4;
+    cursor: pointer;
   }
 `;
 
@@ -39,7 +46,6 @@ const AllowComments = styled.div`
   display: inline-block;
   margin-right: 30px;
 `;
-
 const DropDownContainer = styled.div`
   display: inline-block;
   position: relative;
@@ -51,6 +57,7 @@ const DropDownContainer = styled.div`
     color: #ffffff;
     border-radius: 3px;
     background-color: #67c1f5;
+    cursor: pointer;
   }
 `;
 
@@ -60,8 +67,6 @@ const DropDownA = styled.a`
   text-decoration: none;
   line-height: 19px;
   padding-top: 3px;
-  overflow: hidden;
-  text-overflow: ellipsis;
   white-space: nowrap;
   position: relative;
   border: 0;
@@ -85,34 +90,86 @@ export default class Controls extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      visibility: 'public',
+      visibility: ['Public', 'Friends Only'],
       language: 'English',
       allowComments: true,
-      showMenu: false
+      showMenuPublic: false,
+      showMenuLanguage: false
     };
+    this.handleVisibilityDrop = this.handleVisibilityDrop.bind(this);
+    this.handleLanguageDrop = this.handleLanguageDrop.bind(this);
+  }
+
+  handleVisibilityDrop(e) {
+    e.preventDefault();
+    this.setState({
+      showMenuPublic: true
+    });
+  }
+
+  handleLanguageDrop(e) {
+    e.preventDefault();
+    this.setState({
+      showMenuLanguage: true
+    });
   }
 
   render() {
-    return (
-      <ReviewControls>
-        <ControlBlock>
-          <StyledSpan className="controlText"> Visibility :</StyledSpan> &nbsp;
-          <DropDownContainer>
-            <DropDownA>Public</DropDownA>
-          </DropDownContainer>
-        </ControlBlock>
-        <ControlBlock>
-          <StyledSpan className="controlText"> Language :</StyledSpan> &nbsp;
-          <DropDownContainer>
-            <DropDownA>English</DropDownA>
-          </DropDownContainer>
-        </ControlBlock>
-        <AllowComments>
-          <input type="checkbox" id="EnableReviewComments" />
-          <label id="EnableReviewComments">Allow Comments</label>
-        </AllowComments>
-        <FormattingHelp>Formatting Help</FormattingHelp>
-      </ReviewControls>
-    );
+    if (
+      this.state.showMenuPublic === false &&
+      this.state.showMenuLanguage === false
+    ) {
+      return (
+        <ReviewControls>
+          <ControlBlock>
+            <StyledSpan className="controlText"> Visibility :</StyledSpan>{' '}
+            &nbsp;
+            <DropDownContainer onClick={e => this.handleVisibilityDrop(e)}>
+              <DropDownA>Public</DropDownA>
+            </DropDownContainer>
+          </ControlBlock>
+          <ControlBlock>
+            <StyledSpan className="controlText"> Language :</StyledSpan> &nbsp;
+            <DropDownContainer onClick={e => this.handleLanguageDrop(e)}>
+              <DropDownA>English</DropDownA>
+            </DropDownContainer>
+          </ControlBlock>
+          <AllowComments>
+            <input type="checkbox" id="EnableReviewComments" />
+            <label id="EnableReviewComments">Allow Comments</label>
+          </AllowComments>
+          <FormattingHelp>Formatting Help</FormattingHelp>
+        </ReviewControls>
+      );
+    } else if (
+      this.state.showMenuPublic === false &&
+      this.state.showMenuLanguage === true
+    ) {
+      return (
+        <ReviewControls>
+          <ControlBlock>
+            <StyledSpan className="controlText"> Visibility :</StyledSpan>{' '}
+            &nbsp;
+            <DropDownContainer>
+              <DropDownA>Public</DropDownA>
+            </DropDownContainer>
+          </ControlBlock>
+          <ControlBlock>
+            <StyledSpan className="controlText"> Language :</StyledSpan> &nbsp;
+            <DropDownContainer>
+              <DropDownA>English</DropDownA>
+            </DropDownContainer>
+            <SelectContainer>
+              <LanguageDropDown />
+            </SelectContainer>
+          </ControlBlock>
+          <AllowComments>
+            <input type="checkbox" id="EnableReviewComments" />
+            <label id="EnableReviewComments">Allow Comments</label>
+          </AllowComments>
+          <FormattingHelp>Formatting Help</FormattingHelp>
+        </ReviewControls>
+      );
+    }
   }
 }

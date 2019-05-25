@@ -141,7 +141,7 @@ export default class Controls extends React.Component {
         </ControlBlock>
         <ControlBlock>
           <StyledSpan className="controlText"> Language :</StyledSpan> &nbsp;
-          <DropDownContainer onClick={e => this.handleLanguageDrop(e)} onBlur={e => console.log(e)}>
+          <DropDownContainer onMouseEnter={e => this.handleLanguageDrop(e)} onMouseLeave={e => this.handleLanguageDrop(e)} onBlur={e => console.log(e)}>
             <DropDownA>{this.state.language}</DropDownA>
             {
               this.state.showMenuLanguage ? <LanguageDropDown updateLanguage={this.updateLanguage} languages={this.state.languages}/> : null

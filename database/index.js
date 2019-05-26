@@ -7,12 +7,11 @@ mongoose.connect('mongodb://localhost/players', {
 
 var playerSchema = mongoose.Schema({
   id: Number,
-  username: String,
-  language: Array,
-  avatar: String,
-  recommended: Boolean,
+  language: String,
+  recommended: String,
   allowComments: Boolean,
-  review: String
+  review: String,
+  visibility: String
 });
 
 var Player = mongoose.model('player', playerSchema);
@@ -53,7 +52,6 @@ var Player = mongoose.model('player', playerSchema);
 var allPlayers = callback => {
   Player.find((err, docs) => {
     if (err) {
-      console.log('Error getting data from DB:', err);
     } else {
       callback(null, docs);
     }
@@ -62,12 +60,11 @@ var allPlayers = callback => {
 
 var postReview = review => {
   var player = new Player(review);
-  player.save(err => {
+  player.save(player, (err,res) => {
     if (err) {
-      console.log('An error has occured posting to DB', err);
+      console.log(err)
     } else {
-      console.log(player);
-      res.send(201, player);
+      console.log('DB posted:',player);
     }
   });
 };

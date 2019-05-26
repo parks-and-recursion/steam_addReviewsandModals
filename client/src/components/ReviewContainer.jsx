@@ -117,13 +117,18 @@ class ReviewContainer extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      language: '',
-      visibility: '',
-      allowComments: false
+      language: 'English',
+      visibility: 'Public',
+      allowComments: false,
+      review: '',
+      recommended: ''
     };
     this.handleLanguageChange = this.handleLanguageChange.bind(this);
     this.handleVisibilityChange = this.handleVisibilityChange.bind(this);
     this.handleAllowComments = this.handleAllowComments.bind(this);
+    this.handleReview = this.handleReview.bind(this);
+    this.handleRecommend = this.handleRecommend.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleLanguageChange(language) {
@@ -140,11 +145,32 @@ class ReviewContainer extends React.Component {
     console.log(`ReviewContainer has visibility ${visibility}`);
   }
 
-  handleAllowComments() {
+  handleAllowComments(allowComments) {
     this.setState({
-      allowComments: true
+      allowComments
     });
-    console.log('ReviewContainer has allowing Comments');
+    console.log('ReviewContainer has allowing Comments:', allowComments);
+  }
+
+  handleReview(review) {
+    this.setState({
+      review
+    });
+    console.log(`Review Container has new review: ${review}`);
+  }
+
+  handleRecommend(recommended) {
+    this.setState({
+      recommended
+    });
+    console.log(`Review Container has new recommend: ${recommended}`);
+  }
+
+  handleSubmit(e) {
+    e.preventDefault();
+    const data = this.state;
+    console.log('Data in RC', data);
+    this.props.handlePost(data);
   }
 
   render() {
@@ -163,17 +189,17 @@ class ReviewContainer extends React.Component {
           <Img src="https://i.imgur.com/hHVjPbv.jpg" />
         </Avatar>
         <InputBox>
-          <Content />
+          <Content handleReview={this.handleReview} />
           <Controls
             handleLanguageChange={this.handleLanguageChange}
             handleVisibilityChange={this.handleVisibilityChange}
             handleAllowComments={this.handleAllowComments}
           />
-          <LeftControls />
+          <LeftControls handleRecommend={this.handleRecommend} />
           <ReviewControlRight>
             <Submit>
               <Post>
-                <Span>Post Review</Span>
+                <Span onClick={e => this.handleSubmit(e)}>Post Review</Span>
               </Post>
             </Submit>
           </ReviewControlRight>

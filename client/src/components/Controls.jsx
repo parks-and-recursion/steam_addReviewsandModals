@@ -163,11 +163,12 @@ export default class Controls extends React.Component {
     this.props.handleVisibilityChange(visibility);
   }
 
-  handleAllowComments() {
+  handleAllowComments(e) {
+    const allowComments = !this.state.allowComments;
     this.setState({
-      allowComments: true
+      allowComments
     });
-    this.props.handleAllowComments();
+    this.props.handleAllowComments(allowComments);
   }
 
   render() {

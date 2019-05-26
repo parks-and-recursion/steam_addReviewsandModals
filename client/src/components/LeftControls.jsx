@@ -149,7 +149,8 @@ export default class LeftControls extends React.Component {
       clickUp: false,
       hoverUp: false,
       clickDown: false,
-      hoverDown: false
+      hoverDown: false,
+      recommended: ''
     };
     this.activeStateUp = this.activeStateUp.bind(this);
     this.activeStateDown = this.activeStateDown.bind(this);
@@ -199,20 +200,26 @@ export default class LeftControls extends React.Component {
 
   handleClickUp(e) {
     e.preventDefault();
+    const recommended = 'yes';
     this.setState({
       clickUp: true,
       clickDown: false,
-      hoverUp: false
+      hoverUp: false,
+      recommended: 'yes'
     });
+    this.props.handleRecommend(recommended);
   }
 
   handleClickDown(e) {
     e.preventDefault();
+    const recommended = 'no';
     this.setState({
       clickUp: false,
       clickDown: true,
-      hoverDown: false
+      hoverDown: false,
+      recommended: 'no'
     });
+    this.props.handleRecommend(recommended);
   }
 
   render() {

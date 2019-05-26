@@ -43,7 +43,7 @@ export default class VisibilityDropDown extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      visibility: ''
+      visibility: 'Public'
     };
   }
 

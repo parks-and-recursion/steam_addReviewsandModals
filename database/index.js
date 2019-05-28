@@ -60,11 +60,11 @@ var allPlayers = callback => {
 
 var postReview = review => {
   var player = new Player(review);
-  player.save(player, (err,res) => {
+  player.save(player, (err, res) => {
     if (err) {
-      console.log(err)
+      console.log(err);
     } else {
-      console.log('DB posted:',player);
+      console.log('DB posted:', player);
     }
   });
 };

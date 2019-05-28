@@ -32,7 +32,7 @@ app.get('/players', function(req, res) {
 app.post('/players', (req, res) => {
   var review = req.body;
   db.postReview(review);
-  res.end("Success")
+  res.end('Success');
 });
 
 module.exports = app;

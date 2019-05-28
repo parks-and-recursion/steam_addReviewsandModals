@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-
+import onClickOutside from 'react-onclickoutside';
 // const SelectContainer = styled.div`
 //   position: static;
 // `;
@@ -15,7 +15,7 @@ const DropDownList = styled.ul`
   top: 0;
   left: auto;
   right: 0;
-  z-index: 900;
+  z-index: 10000009000499;
   overflow: auto;
   overflow-x: hidden;
   box-shadow: 0 0 5px 0 #000000;
@@ -41,29 +41,49 @@ const DropDownListA = styled.a`
     background: -webkit-linear-gradient(-60deg, #417a9b 5%, #67c1f5 95%);
   }
 `;
-
-export default class LanguageDropDown extends React.Component {
+class LanguageDropDown extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      Language: ''
+      Language: '',
+      clickedOutside: false
     };
+    this.handleClickOutside = this.handleClickOutside.bind(this);
+    this.toggle = this.toggle.bind(this);
+  }
+
+  handleClickOutside() {
+    this.toggle();
+    console.log('clicked outside');
+  }
+
+  toggle() {
+    const clickedOutside = !this.state.clickedOutside;
+    this.setState({
+      clickedOutside
+    });
   }
 
   render() {
-    return (
-      <DropDownList>
-        {this.props.languages.map((language, key) => (
-          <DropDownListItem key={key}>
-            <DropDownListA
-              onClick={() => this.props.updateLanguage(language)}
-              key={key}
-            >
-              {language}
-            </DropDownListA>
-          </DropDownListItem>
-        ))}
-      </DropDownList>
-    );
+    if (!this.state.clickedOutside) {
+      return (
+        <DropDownList>
+          {this.props.languages.map((language, key) => (
+            <DropDownListItem key={key}>
+              <DropDownListA
+                onClick={() => this.props.updateLanguage(language)}
+                key={key}
+              >
+                {language}
+              </DropDownListA>
+            </DropDownListItem>
+          ))}
+        </DropDownList>
+      );
+    } else {
+      return null;
+    }
   }
 }
+
+export default onClickOutside(LanguageDropDown);

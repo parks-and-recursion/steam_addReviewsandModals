@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import LanguageDropDown from './LanguageDropDown.jsx';
 import VisibilityDropDown from './VisibilityDropDown.jsx';
+import onClickOutside from 'react-onclickoutside';
 
 const StyledSpan = styled.span`
   font-family: Arial, Helvetica, sans-serif;
@@ -83,7 +84,7 @@ const DropDownA = styled.a`
   }
 `;
 
-export default class Controls extends React.Component {
+class Controls extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -127,7 +128,6 @@ export default class Controls extends React.Component {
     };
     this.handleVisibilityDrop = this.handleVisibilityDrop.bind(this);
     this.handleLanguageDrop = this.handleLanguageDrop.bind(this);
-    this.onBlur = this.onBlur.bind(this);
     this.updateLanguage = this.updateLanguage.bind(this);
     this.handleAllowComments = this.handleAllowComments.bind(this);
     this.updateVisibility = this.updateVisibility.bind(this);
@@ -136,21 +136,19 @@ export default class Controls extends React.Component {
   handleVisibilityDrop(e) {
     e.preventDefault();
     const showMenuPublic = !this.state.showMenuPublic;
-    this.setState({ showMenuPublic });
+    this.setState({
+      showMenuPublic: showMenuPublic,
+      showMenuLanguage: false
+    });
   }
 
   handleLanguageDrop(e) {
     e.preventDefault();
     const showMenuLanguage = !this.state.showMenuLanguage;
-    this.setState({ showMenuLanguage });
-  }
-
-  onBlur(event) {
-    console.log('blur');
-    if (!event.currentTarget.contains(event.relatedTarget)) {
-      const showMenuLanguage = false;
-      this.setState({ showMenuLanguage });
-    }
+    this.setState({
+      showMenuLanguage: showMenuLanguage,
+      showMenuPublic: false
+    });
   }
 
   updateLanguage(language) {
@@ -188,10 +186,7 @@ export default class Controls extends React.Component {
         </ControlBlock>
         <ControlBlock>
           <StyledSpan className="controlText"> Language :</StyledSpan> &nbsp;
-          <DropDownContainer
-            onClick={e => this.handleLanguageDrop(e)}
-            onBlur={e => console.log(e)}
-          >
+          <DropDownContainer onClick={e => this.handleLanguageDrop(e)}>
             <DropDownA>{this.state.language}</DropDownA>
             {this.state.showMenuLanguage ? (
               <LanguageDropDown
@@ -210,3 +205,5 @@ export default class Controls extends React.Component {
     );
   }
 }
+
+export default Controls;

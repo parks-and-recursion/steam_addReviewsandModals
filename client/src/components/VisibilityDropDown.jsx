@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import onClickOutside from 'react-onclickoutside';
 
 const SelectContainer = styled.div`
   position: static;
@@ -39,30 +40,51 @@ const DropDownListA = styled.a`
   }
 `;
 
-export default class VisibilityDropDown extends React.Component {
+class VisibilityDropDown extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      visibility: 'Public'
+      visibility: 'Public',
+      clickedOutside: false
     };
+    this.handleClickOutside = this.handleClickOutside.bind(this);
+    this.toggle = this.toggle.bind(this);
+  }
+
+  handleClickOutside() {
+    this.toggle();
+    console.log('clicked outside');
+  }
+
+  toggle() {
+    const clickedOutside = !this.state.clickedOutside;
+    this.setState({
+      clickedOutside
+    });
   }
 
   render() {
-    return (
-      <SelectContainer>
-        <DropDownList>
-          {this.props.visibilityOptions.map((visibility, key) => (
-            <DropDownListItem key={key}>
-              <DropDownListA
-                onClick={() => this.props.updateVisibility(visibility)}
-                key={key}
-              >
-                {visibility}
-              </DropDownListA>
-            </DropDownListItem>
-          ))}
-        </DropDownList>
-      </SelectContainer>
-    );
+    if (!this.state.clickedOutside) {
+      return (
+        <SelectContainer>
+          <DropDownList>
+            {this.props.visibilityOptions.map((visibility, key) => (
+              <DropDownListItem key={key}>
+                <DropDownListA
+                  onClick={() => this.props.updateVisibility(visibility)}
+                  key={key}
+                >
+                  {visibility}
+                </DropDownListA>
+              </DropDownListItem>
+            ))}
+          </DropDownList>
+        </SelectContainer>
+      );
+    } else {
+      return null;
+    }
   }
 }
+
+export default onClickOutside(VisibilityDropDown);

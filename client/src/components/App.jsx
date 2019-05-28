@@ -39,7 +39,9 @@ class App extends React.Component {
       visibility: '',
       allowComments: false,
       review: '',
-      recommended: ''
+      recommended: '',
+      languageActive: false,
+      visibilityActive: false
     };
     this.handlePost = this.handlePost.bind(this);
   }
@@ -49,20 +51,22 @@ class App extends React.Component {
       data
     });
     Axios.post('/players', data)
-      .then(()=>console.log('Posted to server'))
+      .then(res => console.log('Posted to server: ', res))
       .catch(err => console.log(err));
   }
 
   render() {
-    return (
-      <Background>
-        <Title />
-        <TextEditor>
-          <AlreadyOwnedBtns /> <HoursPlayed />
-          <ReviewContainer handlePost={this.handlePost} />
-        </TextEditor>
-      </Background>
-    );
+    if (!this.state.handleVisibility) {
+      return (
+        <Background>
+          <Title />
+          <TextEditor>
+            <AlreadyOwnedBtns /> <HoursPlayed />
+            <ReviewContainer handlePost={this.handlePost} />
+          </TextEditor>
+        </Background>
+      );
+    }
   }
 }
 

@@ -3,6 +3,7 @@ import Content from './Content.jsx';
 import Controls from './Controls.jsx';
 import LeftControls from './LeftControls.jsx';
 import styled from 'styled-components';
+import onClickOutside from 'react-onclickoutside';
 
 const ReviewCreate = styled.div`
   max-width: 908px;
@@ -121,7 +122,9 @@ class ReviewContainer extends React.Component {
       visibility: 'Public',
       allowComments: false,
       review: '',
-      recommended: ''
+      recommended: '',
+      visibilityActive: false,
+      languageActive: false
     };
     this.handleLanguageChange = this.handleLanguageChange.bind(this);
     this.handleVisibilityChange = this.handleVisibilityChange.bind(this);
@@ -135,21 +138,18 @@ class ReviewContainer extends React.Component {
     this.setState({
       language
     });
-    console.log(`ReviewContainer has language ${language}`);
   }
 
   handleVisibilityChange(visibility) {
     this.setState({
       visibility
     });
-    console.log(`ReviewContainer has visibility ${visibility}`);
   }
 
   handleAllowComments(allowComments) {
     this.setState({
       allowComments
     });
-    console.log('ReviewContainer has allowing Comments:', allowComments);
   }
 
   handleReview(review) {

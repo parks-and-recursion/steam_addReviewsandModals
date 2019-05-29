@@ -56,17 +56,15 @@ class App extends React.Component {
   }
 
   render() {
-    if (!this.state.handleVisibility) {
-      return (
-        <Background>
-          <Title />
-          <TextEditor>
-            <AlreadyOwnedBtns /> <HoursPlayed />
-            <ReviewContainer handlePost={this.handlePost} />
-          </TextEditor>
-        </Background>
-      );
-    }
+    return (
+      <Background>
+        <Title />
+        <TextEditor>
+          <AlreadyOwnedBtns /> <HoursPlayed />
+          <ReviewContainer handlePost={this.handlePost} />
+        </TextEditor>
+      </Background>
+    );
   }
 }
 

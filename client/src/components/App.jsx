@@ -4,6 +4,7 @@ import AlreadyOwnedBtns from './AlreadyOwnedBtns.jsx';
 import HoursPlayed from './HoursPlayed.jsx';
 import ReviewContainer from './ReviewContainer.jsx';
 import styled from 'styled-components';
+import Axios from 'axios';
 
 const Background = styled.div`
   background: #1b2838;
@@ -33,7 +34,25 @@ const TextEditor = styled.div`
 class App extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      language: '',
+      visibility: '',
+      allowComments: false,
+      review: '',
+      recommended: '',
+      languageActive: false,
+      visibilityActive: false
+    };
+    this.handlePost = this.handlePost.bind(this);
+  }
+
+  handlePost(data) {
+    this.setState({
+      data
+    });
+    Axios.post('/players', data)
+      .then(res => console.log('Posted to server: ', res))
+      .catch(err => console.log(err));
   }
 
   render() {
@@ -42,7 +61,7 @@ class App extends React.Component {
         <Title />
         <TextEditor>
           <AlreadyOwnedBtns /> <HoursPlayed />
-          <ReviewContainer />
+          <ReviewContainer handlePost={this.handlePost} />
         </TextEditor>
       </Background>
     );

@@ -20,11 +20,9 @@ app.get('/players', function(req, res) {
   console.log('Sending request to DB');
   db.allPlayers((err, docs) => {
     if (err) {
-      console.log('Error on the server');
       res.status(404);
       res.end();
     } else {
-      console.log('Successful GET to DB from Server:', docs);
       res.status(200);
       res.send(docs);
     }
@@ -32,9 +30,9 @@ app.get('/players', function(req, res) {
 });
 
 app.post('/players', (req, res) => {
-  console.log('POSTING THIS TO DB: ', req.body);
   var review = req.body;
   db.postReview(review);
+  res.end('Success');
 });
 
 module.exports = app;

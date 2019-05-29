@@ -1,14 +1,18 @@
 import React from 'react';
 import App from '../client/src/components/App.jsx';
 import Enzyme, { shallow, render, mount } from 'enzyme';
-// import Adapter from 'enzyme-adapter-react-16';
+import AlreadyOwnedBtns from '../client/src/components/AlreadyOwnedBtns.jsx';
 
-// Enzyme.configure({ adapter: new Adapter() });
-
-describe('App component', () => {
-  it('should have a function', () => {
-    const wrapper = shallow(<App />);
-    const text = wrapper.find('h1').text();
-    expect(text).toEqual('HELLOW WURLD');
+describe('Addition', () => {
+  it('knows that 2 and 2 make 4', () => {
+    expect(2 + 2).toBe(4);
   });
 });
+
+// describe('App component', () => {
+//   it('should have a component called Title', () => {
+//     const wrapper = mount(<App />);
+//     const test = wrapper.
+//     expect(test).to.equal(true);
+//   });
+// });

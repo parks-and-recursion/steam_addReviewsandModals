@@ -59,6 +59,7 @@ const IconThumbsUp = styled.i`
   height: 18px;
   margin-right: 2px;
   margin: 0 0px;
+
   background: url(https://steamstore-a.akamaihd.net/public/shared/images/buttons/icons_18.png?v=3);
   vertical-align: text-top;
   background-position: 0px 0px;
@@ -70,6 +71,7 @@ const IconThumbsDown = styled.i`
   width: 18px;
   height: 18px;
   margin: 0 0px;
+  margin-right: 2px;
   background: url(https://steamstore-a.akamaihd.net/public/shared/images/buttons/icons_18.png?v=3);
   vertical-align: text-top;
   background-position: -18px 0px;
@@ -81,6 +83,7 @@ const HoverThumbsUp = styled.i`
   width: 18px;
   height: 18px;
   margin: 0 0px;
+  margin-right: 2px;
   background: url(https://steamstore-a.akamaihd.net/public/shared/images/buttons/icons_18.png?v=3);
   vertical-align: text-top;
   background-position: -72px 0px;
@@ -92,6 +95,7 @@ const HoverThumbsDown = styled.i`
   width: 18px;
   height: 18px;
   margin: 0 0px;
+  margin-right: 2px;
   background: url(https://steamstore-a.akamaihd.net/public/shared/images/buttons/icons_18.png?v=3);
   vertical-align: text-top;
   background-position: -90px 0px;
@@ -125,6 +129,7 @@ const ClickedUp = styled.i`
   width: 18px;
   height: 18px;
   margin: 0 0px;
+  margin-right: 2px;
   background: url(https://steamstore-a.akamaihd.net/public/shared/images/buttons/icons_18.png?v=3);
   vertical-align: text-top;
   background-position: -36px 0px;
@@ -136,6 +141,7 @@ const ClickedDown = styled.i`
   width: 18px;
   height: 18px;
   margin: 0 0px;
+  margin-right: 2px;
   background: url(https://steamstore-a.akamaihd.net/public/shared/images/buttons/icons_18.png?v=3);
   vertical-align: text-top;
   background-position: -54px 0px;
@@ -149,7 +155,8 @@ export default class LeftControls extends React.Component {
       clickUp: false,
       hoverUp: false,
       clickDown: false,
-      hoverDown: false
+      hoverDown: false,
+      recommended: ''
     };
     this.activeStateUp = this.activeStateUp.bind(this);
     this.activeStateDown = this.activeStateDown.bind(this);
@@ -199,20 +206,26 @@ export default class LeftControls extends React.Component {
 
   handleClickUp(e) {
     e.preventDefault();
+    const recommended = 'yes';
     this.setState({
       clickUp: true,
       clickDown: false,
-      hoverUp: false
+      hoverUp: false,
+      recommended: 'yes'
     });
+    this.props.handleRecommend(recommended);
   }
 
   handleClickDown(e) {
     e.preventDefault();
+    const recommended = 'no';
     this.setState({
       clickUp: false,
       clickDown: true,
-      hoverDown: false
+      hoverDown: false,
+      recommended: 'no'
     });
+    this.props.handleRecommend(recommended);
   }
 
   render() {

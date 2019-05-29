@@ -3,6 +3,7 @@ import Content from './Content.jsx';
 import Controls from './Controls.jsx';
 import LeftControls from './LeftControls.jsx';
 import styled from 'styled-components';
+import onClickOutside from 'react-onclickoutside';
 
 const ReviewCreate = styled.div`
   max-width: 908px;
@@ -117,8 +118,59 @@ class ReviewContainer extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      isOpen: false
+      language: 'English',
+      visibility: 'Public',
+      allowComments: false,
+      review: '',
+      recommended: '',
+      visibilityActive: false,
+      languageActive: false
     };
+    this.handleLanguageChange = this.handleLanguageChange.bind(this);
+    this.handleVisibilityChange = this.handleVisibilityChange.bind(this);
+    this.handleAllowComments = this.handleAllowComments.bind(this);
+    this.handleReview = this.handleReview.bind(this);
+    this.handleRecommend = this.handleRecommend.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  handleLanguageChange(language) {
+    this.setState({
+      language
+    });
+  }
+
+  handleVisibilityChange(visibility) {
+    this.setState({
+      visibility
+    });
+  }
+
+  handleAllowComments(allowComments) {
+    this.setState({
+      allowComments
+    });
+  }
+
+  handleReview(review) {
+    this.setState({
+      review
+    });
+    console.log(`Review Container has new review: ${review}`);
+  }
+
+  handleRecommend(recommended) {
+    this.setState({
+      recommended
+    });
+    console.log(`Review Container has new recommend: ${recommended}`);
+  }
+
+  handleSubmit(e) {
+    e.preventDefault();
+    const data = this.state;
+    console.log('Data in RC', data);
+    this.props.handlePost(data);
   }
 
   render() {
@@ -137,13 +189,17 @@ class ReviewContainer extends React.Component {
           <Img src="https://i.imgur.com/hHVjPbv.jpg" />
         </Avatar>
         <InputBox>
-          <Content />
-          <Controls />
-          <LeftControls />
+          <Content handleReview={this.handleReview} />
+          <Controls
+            handleLanguageChange={this.handleLanguageChange}
+            handleVisibilityChange={this.handleVisibilityChange}
+            handleAllowComments={this.handleAllowComments}
+          />
+          <LeftControls handleRecommend={this.handleRecommend} />
           <ReviewControlRight>
             <Submit>
               <Post>
-                <Span>Post Review</Span>
+                <Span onClick={e => this.handleSubmit(e)}>Post Review</Span>
               </Post>
             </Submit>
           </ReviewControlRight>

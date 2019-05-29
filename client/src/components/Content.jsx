@@ -19,17 +19,28 @@ const TextArea = styled.textarea`
 class Content extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      review: ''
+    };
+    this.writeReview = this.writeReview.bind(this);
+  }
+
+  writeReview(e) {
+    const review = e.target.value;
+    this.setState({
+      review
+    });
+    this.props.handleReview(review);
   }
 
   render() {
     return (
       <TextArea
         className="input_box"
-        id="game_recommendation"
         maxLength="8000"
+        onChange={e => this.writeReview(e)}
       />
     );
   }
 }
-
 export default Content;

@@ -15,7 +15,7 @@ const DropDownList = styled.ul`
   top: 0;
   left: auto;
   right: 0;
-  z-index: 10000009000499;
+  z-index: 900;
   overflow: auto;
   overflow-x: hidden;
   box-shadow: 0 0 5px 0 #000000;

@@ -64,8 +64,10 @@ const Img = styled.img`
 const InputBox = styled.div`
   width: auto;
   float: none;
-  overflow: hidden;
-`;
+  display:grid;
+  position: static;
+  `;
+  // overflow: hidden;
 
 const Submit = styled.div`
   display: block;
@@ -111,9 +113,9 @@ const Span = styled.span`
 `;
 
 const ReviewControlRight = styled.div`
-  padding-top: 14px;
-  padding-right: 7px;
 `;
+// padding-top: 14px;
+// padding-right: 7px;
 class ReviewContainer extends React.Component {
   constructor(props) {
     super(props);
@@ -195,7 +197,7 @@ class ReviewContainer extends React.Component {
             handleVisibilityChange={this.handleVisibilityChange}
             handleAllowComments={this.handleAllowComments}
           />
-          <LeftControls handleRecommend={this.handleRecommend} />
+          <LeftControls handleRecommend={this.handleRecommend}/>
           <ReviewControlRight>
             <Submit>
               <Post>

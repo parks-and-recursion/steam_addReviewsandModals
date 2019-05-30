@@ -14,7 +14,7 @@ if (process.env.NODE_ENV !== 'test') {
   });
 }
 
-app.use(express.static('client/dist'));
+app.use(express.static('public'));
 
 app.get('/players', function(req, res) {
   console.log('Sending request to DB');

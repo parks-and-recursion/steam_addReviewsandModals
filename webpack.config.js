@@ -7,7 +7,7 @@ var PUBLIC_DIR = path.join(__dirname, '/public');
 module.exports = {
   entry: `${SRC_DIR}/index.jsx`,
   output: {
-    filename: 'bundle.js',
+    filename: 'dist/bundle.js',
     path: PUBLIC_DIR
   },
   module: {

@@ -173,11 +173,12 @@ class Controls extends React.Component {
     return (
       <ReviewControls>
         <ControlBlock>
-          <StyledSpan className="controlText"> Visibility :</StyledSpan> &nbsp;
+          <StyledSpan> Visibility :</StyledSpan> &nbsp;
           <DropDownContainer onClick={e => this.handleVisibilityDrop(e)}>
             <DropDownA>{this.state.visibility}</DropDownA>
             {this.state.showMenuPublic ? (
               <VisibilityDropDown
+          
                 visibilityOptions={this.state.visibilityOptions}
                 updateVisibility={this.updateVisibility}
               />
@@ -185,7 +186,7 @@ class Controls extends React.Component {
           </DropDownContainer>
         </ControlBlock>
         <ControlBlock>
-          <StyledSpan className="controlText"> Language :</StyledSpan> &nbsp;
+          <StyledSpan> Language :</StyledSpan> &nbsp;
           <DropDownContainer onClick={e => this.handleLanguageDrop(e)}>
             <DropDownA>{this.state.language}</DropDownA>
             {this.state.showMenuLanguage ? (

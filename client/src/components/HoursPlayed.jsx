@@ -12,7 +12,7 @@ const Bg = styled.div`
 const HoursPlayed = () => {
   return (
     <Bg>
-      <div className="hours_played">3,140.2 hrs on record </div>
+      <div>3,140.2 hrs on record </div>
     </Bg>
   );
 };

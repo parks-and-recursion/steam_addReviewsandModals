@@ -41,10 +41,10 @@ const OwnedFlag = styled.div`
 const Title = () => {
   return (
     <Wrapper>
-      <OwnedFlag className="ds_owned_flag ds_flag">
+      <OwnedFlag>
         IN LIBRARY&nbsp;&nbsp;
       </OwnedFlag>
-      <TitleDiv className="already_in_library">
+      <TitleDiv>
         Dota 2 is already in your Steam library
       </TitleDiv>
     </Wrapper>

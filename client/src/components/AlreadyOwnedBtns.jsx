@@ -51,10 +51,10 @@ const AlreadyOwnedBtns = () => {
   return (
     <GameAreaPlayStats>
       <Area>
-        <A className="MdBtn" href="steam://run/570">
+        <A href="steam://run/570">
           <Span>Play Now </Span>
         </A>
-        <A className="MdBtn" href="https://store.steampowered.com/about/">
+        <A href="https://store.steampowered.com/about/">
           <Span>Install Steam </Span>
         </A>
       </Area>

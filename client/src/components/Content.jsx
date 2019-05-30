@@ -36,7 +36,6 @@ class Content extends React.Component {
   render() {
     return (
       <TextArea
-        className="input_box"
         maxLength="8000"
         onChange={e => this.writeReview(e)}
       />

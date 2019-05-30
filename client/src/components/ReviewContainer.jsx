@@ -3,7 +3,6 @@ import Content from './Content.jsx';
 import Controls from './Controls.jsx';
 import LeftControls from './LeftControls.jsx';
 import styled from 'styled-components';
-import onClickOutside from 'react-onclickoutside';
 
 const ReviewCreate = styled.div`
   max-width: 908px;

@@ -1,5 +1,5 @@
 import React from 'react';
-import styled from 'styled-components';
+const styled = window.styled;
 
 const TextArea = styled.textarea`
   border: 1px solid #233c51;
@@ -34,12 +34,7 @@ class Content extends React.Component {
   }
 
   render() {
-    return (
-      <TextArea
-        maxLength="8000"
-        onChange={e => this.writeReview(e)}
-      />
-    );
+    return <TextArea maxLength="8000" onChange={e => this.writeReview(e)} />;
   }
 }
 export default Content;

@@ -2,7 +2,7 @@ import React from 'react';
 import Content from './Content.jsx';
 import Controls from './Controls.jsx';
 import LeftControls from './LeftControls.jsx';
-import styled from 'styled-components';
+const styled = window.styled;
 
 const ReviewCreate = styled.div`
   max-width: 908px;
@@ -63,10 +63,10 @@ const Img = styled.img`
 const InputBox = styled.div`
   width: auto;
   float: none;
-  display:grid;
+  display: grid;
   position: static;
-  `;
-  // overflow: hidden;
+`;
+// overflow: hidden;
 
 const Submit = styled.div`
   display: block;
@@ -111,8 +111,7 @@ const Span = styled.span`
   font-size: 15px;
 `;
 
-const ReviewControlRight = styled.div`
-`;
+const ReviewControlRight = styled.div``;
 // padding-top: 14px;
 // padding-right: 7px;
 class ReviewContainer extends React.Component {
@@ -196,7 +195,7 @@ class ReviewContainer extends React.Component {
             handleVisibilityChange={this.handleVisibilityChange}
             handleAllowComments={this.handleAllowComments}
           />
-          <LeftControls handleRecommend={this.handleRecommend}/>
+          <LeftControls handleRecommend={this.handleRecommend} />
           <ReviewControlRight>
             <Submit>
               <Post>

@@ -3,7 +3,7 @@ import Title from './Title.jsx';
 import AlreadyOwnedBtns from './AlreadyOwnedBtns.jsx';
 import HoursPlayed from './HoursPlayed.jsx';
 import ReviewContainer from './ReviewContainer.jsx';
-import styled from 'styled-components';
+const styled = window.styled;
 import Axios from 'axios';
 
 const Background = styled.div`

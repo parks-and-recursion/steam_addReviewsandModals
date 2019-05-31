@@ -57,7 +57,7 @@ class VisibilityDropDown extends React.Component {
   }
 
   toggle() {
-    const clickedOutside = !this.state.clickedOutside;
+    const clickedOutside = true;
     this.setState({
       clickedOutside
     });

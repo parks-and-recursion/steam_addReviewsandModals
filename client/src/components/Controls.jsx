@@ -113,7 +113,7 @@ class Controls extends React.Component {
         'Norwegian',
         'Polish',
         'Portuguese',
-        'Protuguese - Brazil',
+        'Portuguese - Brazil',
         'Romanian',
         'Russian',
         'Finnish',

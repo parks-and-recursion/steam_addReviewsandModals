@@ -1,5 +1,5 @@
 import React from 'react';
-import styled from 'styled-components';
+const styled = window.styled;
 import LanguageDropDown from './LanguageDropDown.jsx';
 import VisibilityDropDown from './VisibilityDropDown.jsx';
 import onClickOutside from 'react-onclickoutside';
@@ -178,7 +178,6 @@ class Controls extends React.Component {
             <DropDownA>{this.state.visibility}</DropDownA>
             {this.state.showMenuPublic ? (
               <VisibilityDropDown
-          
                 visibilityOptions={this.state.visibilityOptions}
                 updateVisibility={this.updateVisibility}
               />

@@ -10,6 +10,13 @@ module.exports = {
     filename: 'dist/bundle.js',
     path: PUBLIC_DIR
   },
+  externals: {
+    'styled-components': {
+      commonjs: 'styled-components',
+      commonjs2: 'styled-components',
+      amd: 'styled-components'
+    }
+  },
   module: {
     rules: [
       {

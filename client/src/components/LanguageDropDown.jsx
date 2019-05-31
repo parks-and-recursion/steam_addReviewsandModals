@@ -1,5 +1,5 @@
 import React from 'react';
-import styled from 'styled-components';
+const styled = window.styled;
 import onClickOutside from 'react-onclickoutside';
 // const SelectContainer = styled.div`
 //   position: static;

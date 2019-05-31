@@ -1,5 +1,5 @@
 import React from 'react';
-import styled from 'styled-components';
+const styled = window.styled;
 
 const Bg = styled.div`
   color: #8f98a0;

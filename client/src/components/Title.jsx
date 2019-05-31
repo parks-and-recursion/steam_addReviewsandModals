@@ -1,5 +1,5 @@
 import React from 'react';
-import styled from 'styled-components';
+const styled = window.styled;
 
 const TitleDiv = styled.div`
   font-size: 18px;
@@ -41,12 +41,8 @@ const OwnedFlag = styled.div`
 const Title = () => {
   return (
     <Wrapper>
-      <OwnedFlag>
-        IN LIBRARY&nbsp;&nbsp;
-      </OwnedFlag>
-      <TitleDiv>
-        Dota 2 is already in your Steam library
-      </TitleDiv>
+      <OwnedFlag>IN LIBRARY&nbsp;&nbsp;</OwnedFlag>
+      <TitleDiv>Dota 2 is already in your Steam library</TitleDiv>
     </Wrapper>
   );
 };

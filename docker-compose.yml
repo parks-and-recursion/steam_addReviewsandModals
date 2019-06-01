@@ -8,8 +8,6 @@ services:
       - "database"
     ports:
       - "3004:3004"
-    volumes:
-      - ./:/src/app 
 
   database:
     container_name: steam_add_review_db

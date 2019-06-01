@@ -49,7 +49,7 @@ class App extends React.Component {
     this.setState({
       data
     });
-    Axios.post('/players', data)
+    Axios.post('http://18.217.1.133/players', data)
       .then(res => console.log('Posted to server: ', res))
       .catch(err => console.log(err));
   }

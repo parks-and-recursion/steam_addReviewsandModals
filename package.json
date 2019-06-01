@@ -22,7 +22,7 @@
   },
   "scripts": {
     "start": "node server/index.js",
-    "react-dev": "webpack -d --watch",
+    "react-dev": "webpack -p --watch",
     "seed": "node database/index.js",
     "supertest": "NODE_ENV=test mocha test/apiTest.js --forceExit",
     "test": "jest",

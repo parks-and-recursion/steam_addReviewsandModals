@@ -1,6 +1,6 @@
 const express = require('express');
 var app = express();
-
+var cors = require('cors');
 const db = require('../database/index.js');
 
 const bodyParser = require('body-parser');
@@ -14,6 +14,7 @@ if (process.env.NODE_ENV !== 'test') {
   });
 }
 
+app.use(cors());
 app.use(express.static('public'));
 
 app.get('/players', function(req, res) {

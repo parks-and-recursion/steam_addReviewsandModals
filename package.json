@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "author": "",
-  "license": "",
+  "license": "ISC",
   "engines": {
     "node": ">=6.13.0"
   },
@@ -16,8 +16,12 @@
       "enzyme-to-json/serializer"
     ]
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/parks-and-recursion/steam_addReviewsandModals.git"
+  },
   "scripts": {
-    "start": "nodemon server/index.js",
+    "start": "node server/index.js",
     "react-dev": "webpack -d --watch",
     "seed": "node database/index.js",
     "supertest": "NODE_ENV=test mocha test/apiTest.js --forceExit",

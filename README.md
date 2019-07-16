@@ -1,39 +1,21 @@
-# Project Name
-
-> Project description
+# Adding Reviews Module
+  This module allows users to submit reviews for the game. 
 
 ## Related Projects
-
-  - https://github.com/teamName/repo
-  - https://github.com/teamName/repo
-  - https://github.com/teamName/repo
-  - https://github.com/teamName/repo
+  - https://github.com/parks-and-recursion/steam_reviews
+  - https://github.com/parks-and-recursion/steam_navbar_sidebar
+  - https://github.com/parks-and-recursion/steam_recentNews
+  - https://github.com/parks-and-recursion/steam_content
 
 ## Table of Contents
 
-1. [Usage](#Usage)
-1. [Requirements](#requirements)
 1. [Development](#development)
 
-## Usage
-
-> Some usage instructions
-
-## Requirements
-
-An `nvmrc` file is included if using [nvm](https://github.com/creationix/nvm).
-
-- Node 6.13.0
-- etc
-
 ## Development
-
-### Installing Dependencies
-
 From within the root directory:
 
 ```sh
-npm install -g webpack
-npm install
+npm install 
+npm start
 ```
 
